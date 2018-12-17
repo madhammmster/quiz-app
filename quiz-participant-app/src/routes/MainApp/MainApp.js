@@ -1,30 +1,41 @@
 
 import React, { Component } from 'react';
-import logo from '../../assets/logo.svg'
+import SockJS from 'sockjs-client';
+import Vote from '../../components/Vote/Vote';
+import TeamBar from '../../components/TeamBar/TeamBar';
+
 
 class App extends Component {
-  
-    render() {
-      return (
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </header>
-        </div>
-      );
-    }
-  }
-  
 
-  export default App;
+  componentDidMount = () => {
+
+    var sock = new SockJS('http://localhost:8080');
+
+    sock.onopen = function () {
+      console.log('open');
+      
+    };
+
+    sock.onmessage = function (e) {
+      console.log('message', e.data);
+      sock.close();
+    };
+
+    sock.onclose = function () {
+      console.log('close');
+    };
+
+  }
+
+  render() {
+    return (
+      <div className='route app-route' >
+        <TeamBar />
+        <Vote />
+      </div>
+    );
+  }
+}
+
+
+export default App;

@@ -9,7 +9,7 @@ import { Form, Button } from 'semantic-ui-react'
 import { setTeam } from '../../store/reducers/TeamReducer';
 import { showFader, hideFader } from '../../store/reducers/AppReducer';
 
-// import {post, get} from '../../utils/ApiUtils'
+import {post} from '../../utils/ApiUtils'
 
 import './LoginForm.scss';
 
@@ -19,17 +19,19 @@ class LoginForm extends Component {
     submitData = (data) => {
 
 
-        console.log(data);
-        // get('api/users', this.props.setUser)
-        // post('api/account/authenticate', data, this.props.setUser);  
-        // pass Q!w2e3r4
-
+        console.log(data);    
         this.props.showFader();
-
-        setTimeout(() => {
+        post('participant/register', data, (id) => {
+            this.props.setTeam(
+                {
+                    id: id,
+                    name: data.name,
+                    firstParticipant: data.firstPersonName,
+                    secondParticipant: data.secondPersonName
+                }
+            );
             this.props.hideFader();
-            this.props.setTeam(data);
-        }, 1000)
+        });    
 
     }
 
@@ -43,7 +45,7 @@ class LoginForm extends Component {
                     >
 
                         <Field
-                            name='teamName'
+                            name='name'
                             component={InputField}
                             placeholder='Team name'
                             autoComplete='off'
@@ -51,12 +53,12 @@ class LoginForm extends Component {
 
 
                         <Field
-                            name='firstParticipant'
+                            name='firstPersonName'
                             component={InputField}
                             placeholder='First participant name' />
 
                         <Field
-                            name='secondParticipant'
+                            name='secondPersonName'
                             component={InputField}
                             placeholder='Second participant name' />
 
@@ -65,10 +67,12 @@ class LoginForm extends Component {
                             fluid
                             positive
                             onClick={handleSubmit(this.submitData)}
-                        >Join</Button>
+                        >
+                            Join
+                        </Button>
                     </Form>
                 </div>
-                {!_.isNull(this.props.team) && <Redirect to='/app' />}
+                {!_.isNull(this.props.teamId) && <Redirect to='/app' />}
             </div>
         );
     }
@@ -80,7 +84,7 @@ const form = reduxForm({
 
 const mapStateToProps = (state) => {
     return {
-        team: state.team.team
+        teamId: state.team.id
     }
 }
 

@@ -6,6 +6,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
+import persistState from 'redux-localstorage'
+
 import reducers from './store/reducers/Reducers';
 
 import App from './components/App/App';
@@ -19,7 +21,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
     reducers,
     composeEnhancers(
-        applyMiddleware(thunk)
+        applyMiddleware(thunk),
+        // persistState()
     )
 );
 ReactDOM.render(

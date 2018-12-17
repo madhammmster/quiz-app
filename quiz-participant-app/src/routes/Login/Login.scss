@@ -1,4 +1,14 @@
 .login-route{
     padding-top: 200px;
     text-align: center;
+    
+    .ui.container{
+        padding: 20px 0;
+        
+        background-color: rgba(255,255,255, 0.1)
+    }
+
+    .ui.header{
+        color: #eee;
+    }
 }
