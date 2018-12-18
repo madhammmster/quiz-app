@@ -16,12 +16,6 @@ class SpaceButton extends Component {
     render() {
         const teams = this.props.teams;
 
-        if (teams && teams.length !== 12) {
-            for (var i = 1; i < 12; i++) {
-                teams.push(teams[0]);
-            }
-        }
-
         console.log('teams', teams)
 
         return (
