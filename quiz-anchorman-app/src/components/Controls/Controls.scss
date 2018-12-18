@@ -1,0 +1,27 @@
+
+.container-controls{
+    width: 100%;
+    display: flex;
+
+    justify-content:center;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.container-control{
+    font-size: 30px;
+    color: #fff;
+    padding: 20px;
+    opacity: 0.5;
+    cursor: pointer;
+
+    transition: all .5s;
+}
+
+.container-control:hover{
+    opacity: 1;
+}
+
+.controls{
+    display: flex
+}

@@ -1,0 +1,37 @@
+
+.container-team{    
+    padding: 10px;
+
+}
+
+.team{
+    background-color: rgba(255,255,255, 0.2);
+    padding: 10px;
+    color: #ccc;
+    transition: all .5s;
+}
+
+.team.winner{
+    background-color: rgba(205, 238, 20, 0.767);
+    color: #333;
+}
+
+.container-team-name{
+    font-weight: 700;
+    font-size: 20px;
+    padding-bottom: 20px;
+    padding-left: 23px;
+}
+
+.container-team-participants{
+    padding-bottom: 10px
+}
+
+.team-participant{
+    display: flex;
+    padding-bottom: 5px;
+}
+
+.team-participant-name{
+    padding-left: 10px;
+}
